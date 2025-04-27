@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 {
+    @apply text-4xl font-bold leading-tight;
+  }
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-2xl font-medium;
+  }
+
+  a {
+    @apply text-primary font-medium hover:text-primary/90 transition-colors;
+  }
+
+  button, [type='button'], [type='reset'], [type='submit'] {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  input, textarea, select {
+    @apply bg-background border border-input rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+}
+
+/* Custom components */
+@layer components {
+  .card {
+    @apply bg-background border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-input hover:bg-accent hover:text-accent-foreground;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* Animation classes */
+.animate-in {
+  animation: animateIn 0.3s ease-out forwards;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .dark-mode-transition * {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+}
